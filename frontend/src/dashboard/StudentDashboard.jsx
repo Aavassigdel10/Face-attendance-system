@@ -90,9 +90,9 @@ const StudentDashboard = () => {
               </p>
 
               {/* Card Button */}
-              <Link to={card.path} className={`w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95 ${card.bgColor} hover:brightness-110 shadow-md`}>
+              <button className={`w-full py-3 px-4 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95 ${card.bgColor} hover:brightness-110 shadow-md`}>
                 Get Started <ChevronRight size={16} strokeWidth={3} className="transition-transform group-hover:translate-x-1" />
-              </Link>
+              </button>
             </div>
           ))}
         </div>

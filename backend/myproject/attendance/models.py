@@ -1,3 +1,4 @@
+from django import db
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
@@ -14,6 +15,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
+    
 
     def create_superuser(self, email, password=None, role='admin', **extra_fields):
         
@@ -33,7 +35,6 @@ class User(AbstractUser):
     username = None  
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=10)
-
     USERNAME_FIELD = 'email'  
     REQUIRED_FIELDS = []       
 

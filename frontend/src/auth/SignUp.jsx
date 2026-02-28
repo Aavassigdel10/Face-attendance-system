@@ -16,6 +16,7 @@ const SignUp = () => {
       alert("Passwords do not match!");
       return;
     }
+   
 
     setLoading(true);
     try {

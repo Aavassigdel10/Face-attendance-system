@@ -11,10 +11,18 @@ class SignupSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
-        def validate_email(self, value):
+    def validate_email(self, value):
             if User.objects.filter(email=value).exists():
                 raise serializers.ValidationError("Email is already in use")
             return value
+    def validate(self, data):
+         role = data.get('role')
+
+         if role == 'teacher':
+            if User.objects.filter(role='teacher').exists():
+                raise serializers.ValidationError("Teacher already exists")
+
+         return data
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -23,6 +31,7 @@ class SignupSerializer(serializers.ModelSerializer):
             role=validated_data['role']
         )
         return user
+    
 
 # Move LoginSerializer outside of SignupSerializer
 class LoginSerializer(serializers.Serializer):
